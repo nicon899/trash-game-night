@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://minigames/rabbit-run/images/grass1.png" type="Texture" id=1]
+[ext_resource path="res://minigames/rabbit-run/PlayerRabbit.tscn" type="PackedScene" id=2]
+[ext_resource path="res://minigames/rabbit-run/RabbitRun.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 360, 237 )
+
+[node name="Main" type="Node"]
+script = ExtResource( 3 )
+
+[node name="Grass1" type="Sprite" parent="."]
+position = Vector2( 305, 686 )
+scale = Vector2( 1.41309, 2.76221 )
+texture = ExtResource( 1 )
+offset = Vector2( 39.0987, 7.19533 )
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2( 359, 1161 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2( 6, 18 )
+shape = SubResource( 1 )
+
+[node name="PlayerRabbit" parent="." instance=ExtResource( 2 )]
+position = Vector2( 256, 878 )
