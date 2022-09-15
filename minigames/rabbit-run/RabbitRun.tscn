@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://minigames/rabbit-run/images/grass1.png" type="Texture" id=1]
 [ext_resource path="res://minigames/rabbit-run/PlayerRabbit.tscn" type="PackedScene" id=2]
 [ext_resource path="res://minigames/rabbit-run/RabbitRun.gd" type="Script" id=3]
+[ext_resource path="res://minigames/rabbit-run/Snake.tscn" type="PackedScene" id=4]
+[ext_resource path="res://minigames/rabbit-run/HUD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://minigames/rabbit-run/Carrot.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 360, 237 )
+extents = Vector2( 1081, 237 )
 
 [node name="Main" type="Node"]
 script = ExtResource( 3 )
@@ -23,8 +26,26 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-position = Vector2( 6, 18 )
+position = Vector2( 2, 18 )
 shape = SubResource( 1 )
 
 [node name="PlayerRabbit" parent="." instance=ExtResource( 2 )]
-position = Vector2( 256, 878 )
+position = Vector2( 256, 256 )
+
+[node name="HUD" parent="." instance=ExtResource( 5 )]
+
+[node name="Snake" parent="." instance=ExtResource( 4 )]
+position = Vector2( 0, 850 )
+
+[node name="GameOverRect" type="ColorRect" parent="."]
+visible = false
+margin_right = 720.0
+margin_bottom = 1414.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Carrot" parent="." instance=ExtResource( 6 )]
+position = Vector2( 600, 100 )
+
+[connection signal="ready" from="." to="." method="_on_Main_ready"]
+[connection signal="collect" from="PlayerRabbit" to="." method="_on_PlayerRabbit_collect"]
+[connection signal="hit" from="PlayerRabbit" to="." method="_on_PlayerRabbit_hit"]

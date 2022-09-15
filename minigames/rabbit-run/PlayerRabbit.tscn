@@ -14,20 +14,12 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="PlayerRabbit" type="Node2D"]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+[node name="PlayerRabbit" type="KinematicBody2D"]
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicBody2D"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.1, 0.1 )
 frames = SubResource( 2 )
