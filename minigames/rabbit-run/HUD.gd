@@ -1,4 +1,4 @@
 extends CanvasLayer
 
-func update_score(score):
-	$ScoreLabel.text = str(score)
+func update_score(highscore, score):
+	$ScoreLabel.text = str("Best: ", highscore, " Score: ",score)

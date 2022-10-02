@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://minigames/rabbit-run/images/grass1.png" type="Texture" id=1]
 [ext_resource path="res://minigames/rabbit-run/PlayerRabbit.tscn" type="PackedScene" id=2]
 [ext_resource path="res://minigames/rabbit-run/RabbitRun.gd" type="Script" id=3]
 [ext_resource path="res://minigames/rabbit-run/Snake.tscn" type="PackedScene" id=4]
-[ext_resource path="res://minigames/rabbit-run/HUD.tscn" type="PackedScene" id=5]
 [ext_resource path="res://minigames/rabbit-run/Carrot.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -31,8 +30,6 @@ shape = SubResource( 1 )
 
 [node name="PlayerRabbit" parent="." instance=ExtResource( 2 )]
 position = Vector2( 256, 256 )
-
-[node name="HUD" parent="." instance=ExtResource( 5 )]
 
 [node name="Snake" parent="." instance=ExtResource( 4 )]
 position = Vector2( 0, 850 )
