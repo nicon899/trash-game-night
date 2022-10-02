@@ -11,12 +11,13 @@ config_version=4
 [application]
 
 config/name="Trash Game Night"
-run/main_scene="res://main/GameController.tscn"
+run/main_scene="res://main/Main.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Acc="*res://Acc.gd"
+Variables="*res://main/Variables.gd"
 
 [display]
 
