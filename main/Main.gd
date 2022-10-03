@@ -1,19 +1,17 @@
 extends Node
 
+var characters = 'abcdefghijklmnopqrstuvwxyz'
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	randomize()
+	$InputName.text = generate_word(characters, 12)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func generate_word(chars, length):
+	var word: String
+	var n_char = len(chars)
+	for i in range(length):
+		word += chars[randi()% n_char]
+	return word
 
 # server
 func _on_Button_pressed():
@@ -23,8 +21,11 @@ func _on_Button_pressed():
 # client
 func _on_Button2_pressed():
 	Variables.is_host = false
-	Variables.server_ip = "93.204.4.57"
+	Variables.server_ip = "192.168.181.128"
 	start_game()
 
 func start_game():
-	get_tree().change_scene("res://main/GameNetworkController.tscn")
+	Variables.player_name = $InputName.text
+	if Variables.is_host:
+		Variables.player_name = str("SERVER", Variables.player_name.substr(0, 6))
+	get_tree().change_scene("res://main/GameController.tscn")
