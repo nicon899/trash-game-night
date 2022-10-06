@@ -1,0 +1,59 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://main/PlayerInfoItem.gd" type="Script" id=1]
+
+[node name="PlayerInfoItem" type="VBoxContainer" groups=["player-info-item"]]
+script = ExtResource( 1 )
+
+[node name="PlayerTimer" type="Label" parent="."]
+margin_right = 268.0
+margin_bottom = 14.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "12 seconds left"
+
+[node name="InfoContainer" type="HBoxContainer" parent="."]
+margin_top = 18.0
+margin_right = 268.0
+margin_bottom = 38.0
+
+[node name="PlayerScore" type="Label" parent="InfoContainer"]
+margin_top = 3.0
+margin_right = 16.0
+margin_bottom = 17.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "11"
+
+[node name="PlayerName" type="Label" parent="InfoContainer"]
+margin_left = 20.0
+margin_top = 3.0
+margin_right = 203.0
+margin_bottom = 17.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Player with a very long name"
+
+[node name="ShotsControl" type="HBoxContainer" parent="InfoContainer"]
+margin_left = 207.0
+margin_right = 268.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AddShot" type="Button" parent="InfoContainer/ShotsControl"]
+margin_right = 20.0
+margin_bottom = 20.0
+text = "+"
+
+[node name="Shots" type="Label" parent="InfoContainer/ShotsControl"]
+margin_left = 24.0
+margin_top = 3.0
+margin_right = 40.0
+margin_bottom = 17.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "13"
+
+[node name="RemoveShot" type="Button" parent="InfoContainer/ShotsControl"]
+margin_left = 44.0
+margin_right = 61.0
+margin_bottom = 20.0
+text = "-"

@@ -1,13 +1,12 @@
 extends "res://minigames/BaseGame.gd"
 
-var score = 0
+var score
 var carrot_collectible = true
-var main_scene
 
 func _ready():
 	randomize()
+	score = 0
 	
-
 func _on_PlayerRabbit_hit():
 	$GameOverRect.visible = true
 	yield(get_tree().create_timer(0.1), "timeout")

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://main/PlayerInfoContainer.gd" type="Script" id=1]
+[ext_resource path="res://main/PlayerInfoItem.tscn" type="PackedScene" id=2]
+
+[node name="PlayerInfoContainer" type="VBoxContainer"]
+script = ExtResource( 1 )
+player_info_item = ExtResource( 2 )

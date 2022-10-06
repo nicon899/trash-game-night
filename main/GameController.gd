@@ -4,7 +4,7 @@ export(PackedScene) var rabbit_run
 # constants
 var SERVER_PORT	= 2207
 var MAX_PLAYERS = 32
-var MINIGAME_TIME = 10
+var MINIGAME_TIME = 3
 # variables
 var game
 var player_info = {}
@@ -37,6 +37,7 @@ func _player_connected(id):
 func _player_disconnected(id):
 	# Erase player from info.
 	player_info.erase(id)
+	update_player_list()
 	print(str("INFO: _player_disconnected: ", id))
 
 func _connected_ok():
@@ -73,18 +74,23 @@ func start_game(gameId):
 	send_score()
 	
 	$LobbyContainer.visible = false
+	$HUD.update_score(player_info[0].highscore, 0)
 	
 	game = rabbit_run.instance()
 	game.connect("update_score", self, "_on_BaseGame_update_score")
-	
 	add_child(game)
-	$Timer.start(MINIGAME_TIME)
+	$MinigameTimer.start(MINIGAME_TIME)
+	$StatusUpdateTimer.start()
 
 func _on_Timer_timeout():
 	game.queue_free()
+	$StatusUpdateTimer.stop()
 	load_lobby()
 
 func load_lobby():
+	player_info[0].timer = $MinigameTimer.time_left
+	player_info[0].score = randi() % 100
+	send_score()
 	update_player_list()
 	$LobbyContainer.visible = true
  
@@ -92,28 +98,14 @@ func load_lobby():
 func _on_BaseGame_update_score(score):
 	if score > player_info[0].highscore:
 		player_info[0].highscore = score
-		player_info[0].timer = $Timer.time_left
+		player_info[0].timer = $MinigameTimer.time_left
 		send_score()
 	$HUD.update_score(player_info[0].highscore, score)
 
-func player_info_text_builder(player):
-	var points
-	if player.game != null and player.game == player_info[0].game:
-		points = player.highscore
-	else:
-		points = "-"
-	return str(player.name, " | ", points, " | ", player.shots)
-
 func update_player_list():
-	$LobbyContainer/PlayerList.clear()
-	for i in player_info:
-		var pl = player_info[i]
-		var pl_info = player_info_text_builder(pl)
-		$LobbyContainer/PlayerList.add_item(pl_info)
-	$LobbyContainer/PlayerList.update()
+	$LobbyContainer/PlayerInfoContainer.update_player(player_info)
 
 func _on_StartButton_pressed():
-	print("Button press")
 	var gameId = Variables.MINIGAMES.RABBIT_RUN
 	for id in player_info:
 		if id != 0:
