@@ -1,12 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://minigames/HUD.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main/GameController.gd" type="Script" id=2]
 [ext_resource path="res://minigames/rabbit-run/RabbitRun.tscn" type="PackedScene" id=3]
 [ext_resource path="res://main/PlayerInfoContainer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://main/DrinkScene.tscn" type="PackedScene" id=5]
 
 [node name="Server" type="Node"]
 script = ExtResource( 2 )
+drink_scene = ExtResource( 5 )
 rabbit_run = ExtResource( 3 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -54,3 +56,4 @@ margin_bottom = -555.0
 [connection signal="timeout" from="MinigameTimer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="StatusUpdateTimer" to="." method="_on_Timer_timeout"]
 [connection signal="pressed" from="LobbyContainer/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="submit_shots" from="LobbyContainer/PlayerInfoContainer" to="." method="_on_PlayerInfoContainer_submit_shots"]

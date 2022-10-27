@@ -6,3 +6,22 @@
 [node name="PlayerInfoContainer" type="VBoxContainer"]
 script = ExtResource( 1 )
 player_info_item = ExtResource( 2 )
+
+[node name="ShotControlContainer" type="HBoxContainer" parent="."]
+visible = false
+margin_right = 186.0
+margin_bottom = 20.0
+
+[node name="LabelShotsToGive" type="Label" parent="ShotControlContainer"]
+margin_top = 3.0
+margin_right = 86.0
+margin_bottom = 17.0
+text = "share 5 shots"
+
+[node name="SubmitShotsButton" type="Button" parent="ShotControlContainer"]
+margin_left = 90.0
+margin_right = 186.0
+margin_bottom = 20.0
+text = "Submit Shots"
+
+[connection signal="pressed" from="ShotControlContainer/SubmitShotsButton" to="." method="_on_SubmitShotsButton_pressed"]
